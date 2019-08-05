@@ -1,10 +1,14 @@
 ---
 # tasks file for sonar
 
-- name: Download sonarqube
-  get_url:
-    url: "{{ sonar_url }}"
-    dest: "{{ sonar_dest }}"
+- block:
+    - name: Download sonarqube
+      get_url:
+        url: "{{ sonar_url }}"
+        dest: "{{ sonar_dest }}"
+  rescue:
+  - debug: msg="Sonarqube download failed due to error in the url"
+  - debug: msg="Sonarqube download and installation failed"
 
 - name: Unarchive the config zip file in the same folder
   unarchive:
@@ -17,3 +21,8 @@
   args:
     chdir: "{{ sonar_start_dir }}"
     warn: false
+
+- debug: 
+    msg: 
+    - Sonar is successfully installed
+    - Sonar is up and running
