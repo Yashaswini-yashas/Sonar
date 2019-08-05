@@ -1,0 +1,9 @@
+---
+# defaults file for sonar
+
+sonar_url: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.4.zip
+sonar_dest: /opt
+sonar_zip_path: /opt/sonarqube-6.4.zip
+sonar_unarchive_path: /opt
+sonar_start: ./sonar.sh start
+sonar_start_dir: /opt/sonarqube-6.4/bin/linux-x86-64

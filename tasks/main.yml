@@ -1,0 +1,19 @@
+---
+# tasks file for sonar
+
+- name: Download sonarqube
+  get_url:
+    url: "{{ sonar_url }}"
+    dest: "{{ sonar_dest }}"
+
+- name: Unarchive the config zip file in the same folder
+  unarchive:
+    src: "{{ sonar_zip_path }}"
+    dest: "{{ sonar_unarchive_path }}"
+    remote_src: yes
+
+- name: start sonar on default port
+  shell: "{{ sonar_start }}"
+  args:
+    chdir: "{{ sonar_start_dir }}"
+    warn: false
